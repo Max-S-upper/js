@@ -11,29 +11,25 @@ users.forEach(user => {
 
 function countAverageLength()
 {
-    let exceptionalSymbols = [', ', '. ', '! ' , '? ' , ' ', ',', '.', '!', '?'],
-        str = document.querySelector('#string-data').value,
-        generalLength = str.split('').length,
-        wordsLength = 0,
-        wordsCount = 0;
+    let exceptionalSymbols = [',', '.', '!', '?'];
+    let str = document.querySelector('#string-data').value;
+    let wordsCount = 0;
     if (!str) {
         document.querySelector('.result-container p').textContent = "I can't count an average length of empty words, sorry!";
         return;
     }
 
-    exceptionalSymbols.forEach(exceptionalSymbol => {
-        if (str.includes(exceptionalSymbol)) {
-            let strPieceCurrent = str.split(exceptionalSymbol);
-            for (let i = 0; i < strPieceCurrent.length - 1; i++) {
-                wordsLength += strPieceCurrent[i].split('').length;
-                wordsCount++;
+    let strPieces = str.split(' ');
+    strPieces.forEach(strPiece => {
+        exceptionalSymbols.forEach(exceptionalSymbol => {
+            while (strPiece.includes(exceptionalSymbol)) {
+                strPiece = strPiece.split(exceptionalSymbol).join('');
             }
-
-            if (strPieceCurrent.length < 1) str = strPieceCurrent[0];
-            else str = strPieceCurrent[strPieceCurrent.length - 1];
-        }
+        });
+        wordsCount++;
     });
 
+    let wordsLength = strPieces.join('').length;
     document.querySelector('.result-container p').textContent = 'Average length of a word in the string above is ' + Math.round(wordsLength/wordsCount);
 }
 
