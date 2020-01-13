@@ -6,7 +6,7 @@ let sumAges = 0,
 users.forEach(user => {
     sumAges += user.age;
     user.langCount > maxLanguages ? maxLanguages = user.langCount : '';
-    user.sex === 'Ðœ' ? menQuantity++ : womenQuantity++;
+    user.sex === 'М' ? menQuantity++ : womenQuantity++;
 });
 
 function countAverageLength()
