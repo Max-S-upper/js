@@ -6,7 +6,7 @@ let sumAges = 0,
 users.forEach(user => {
     sumAges += user.age;
     user.langCount > maxLanguages ? maxLanguages = user.langCount : '';
-    user.sex === 'M' ? menQuantity++ : womenQuantity++;
+    user.sex === 'Ðœ' ? menQuantity++ : womenQuantity++;
 });
 
 function countAverageLength()
@@ -23,21 +23,16 @@ function countAverageLength()
 
     exceptionalSymbols.forEach(exceptionalSymbol => {
         if (str.includes(exceptionalSymbol)) {
-            let processedStr = '',
-                strPieceCurrent = str.split(exceptionalSymbol);
+            let strPieceCurrent = str.split(exceptionalSymbol);
             for (let i = 0; i < strPieceCurrent.length - 1; i++) {
                 wordsLength += strPieceCurrent[i].split('').length;
                 wordsCount++;
             }
 
-            str = '';
             if (strPieceCurrent.length < 1) str = strPieceCurrent[0];
             else str = strPieceCurrent[strPieceCurrent.length - 1];
         }
     });
-
-    console.log(generalLength);
-    console.log(wordsLength);
 
     document.querySelector('.result-container p').textContent = 'Average length of a word in the string above is ' + Math.round(wordsLength/wordsCount);
 }
